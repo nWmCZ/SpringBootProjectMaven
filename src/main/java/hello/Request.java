@@ -1,20 +1,23 @@
 package hello;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class Request {
-    private Integer id;
-    private String source;
-    private String param;
-    private LocalDateTime dateTime;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
+
+    private String source;
+
+    private String destination;
+
+    private String param;
+
+    private LocalDateTime dateTime;
+
     public Integer getId() {
         return id;
     }
@@ -29,6 +32,14 @@ public class Request {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public LocalDateTime getDateTime() {
@@ -52,6 +63,7 @@ public class Request {
         return "Request{" +
                 "id=" + id +
                 ", source='" + source + '\'' +
+                ", destination='" + destination + '\'' +
                 ", param='" + param + '\'' +
                 ", dateTime=" + dateTime +
                 '}';

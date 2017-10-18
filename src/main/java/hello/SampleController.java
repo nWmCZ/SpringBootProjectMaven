@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
 @Controller
@@ -21,6 +23,7 @@ public class SampleController {
 
         Request r = new Request();
         r.setSource(userAgent);
+        r.setDestination(getDestinationAddress());
         r.setDateTime(LocalDateTime.now());
         r.setParam(param);
 
@@ -33,5 +36,16 @@ public class SampleController {
     public @ResponseBody Iterable<Request> getAllRequests() {
         // This returns a JSON or XML with the users
         return requestRepository.findAll();
+    }
+
+    private String getDestinationAddress() {
+        String destinationIP = null;
+        try {
+            destinationIP = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            destinationIP = "unknown";
+            e.printStackTrace();
+        }
+        return destinationIP;
     }
 }
