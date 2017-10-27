@@ -9,17 +9,12 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
         org.label-schema.schema-version="1.0.0-rc.1"
 
-ENV TIMEOUT 0
-
-ENV DATABASE_IP localhost
-
-ENV DATABASE_PORT 3306
-
-ENV DATABASE_SCHEMA springboot
-
-ENV DATABASE_USER spring
-
-ENV DATABASE_PASSWORD springpw
+ENV TIMEOUT=0
+    DATABASE_IP=localhost
+    DATABASE_PORT=3306
+    DATABASE_SCHEMA=springboot
+    DATABASE_USER=spring
+    DATABASE_PASSWORD=springpw
 
 COPY . /
 
